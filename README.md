@@ -122,7 +122,6 @@ mkdir -p ~/citrea/configs/devnet/genesis-files
 screen -S citrea
 SKIP_GUEST_BUILD=1 make build-release
 ```
-
 ### Start Citrea Client
 ```bash
 ./target/release/citrea --genesis-paths configs/devnet/genesis-files --da-layer bitcoin --rollup-config-path configs/devnet/rollup_config.toml
@@ -134,3 +133,23 @@ You can follow the blocks from the explorer [in this link](https://explorer.devn
 
 ![synced](https://github.com/kocality/citrea-node-guide/assets/69348404/900f1300-043e-4943-b6f0-8a88a01cc641)
 
+### Install Bitcoin Core
+```bash
+wget https://bitcoincore.org/bin/bitcoin-core-25.0/bitcoin-25.0-x86_64-linux-gnu.tar.gz
+tar -xzf bitcoin-25.0-x86_64-linux-gnu.tar.gz
+sudo install -m 0755 -o root -g root -t /usr/local/bin bitcoin-25.0/bin/*
+```
+### Check Block Count of Signet Container via bitcoin-cli
+```bash
+# In the Rollup Configuration File we set user and password to "bitcoin". so don't change it if you did it as in the manual here.
+bitcoin-cli -rpcconnect=0.0.0.0 -rpcport=38332 -rpcpassword=bitcoin -rpcuser=bitcoin -signet getblockcount
+```
+
+You can check it from Citrea Bitcoin Signet Explorer at [this link](https://mempool.signet.citrea.xyz/)
+
+![koca1](https://github.com/kocality/citrea-node-guide/assets/69348404/f3f4bd63-75c0-4c36-a29c-8e86328bc00e)
+
+## Note: You can ask your questions about Node on the [Discord](https://discord.gg/citrea).
+
+## My Node Running Experience
+The process of running the Citrea Devnet Node was generally smooth. The guide doc was detailed and clear, covering important steps like Docker and Rust installation. However, the process might be a bit complex for someone setting up a node for the first time, and some steps could benefit from clearer explanations. Additionally, some configuration files required extra checks and adjustments to work correctly. Overall, the performance and stability were quite good, and the node synchronized without issues.
