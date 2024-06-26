@@ -133,3 +133,25 @@ Not: Eğer görselde gördüğünüz gibi loglar alıyorsanız node'umuz başar�
 Blockları [bu bağlantıdaki](https://explorer.devnet.citrea.xyz/blocks) Explorer'dan takip edebilirsiniz. Bu adım biraz daha uzun sürer.
 
 ![synced](https://github.com/kocality/citrea-node-guide/assets/69348404/900f1300-043e-4943-b6f0-8a88a01cc641)
+
+### Bitcoin Core Kurulumu
+```bash
+wget https://bitcoincore.org/bin/bitcoin-core-25.0/bitcoin-25.0-x86_64-linux-gnu.tar.gz
+tar -xzf bitcoin-25.0-x86_64-linux-gnu.tar.gz
+sudo install -m 0755 -o root -g root -t /usr/local/bin bitcoin-25.0/bin/*
+```
+### Signet Konteynerinin Block Sayısını bitcoin-cli ile Kontrol Etme
+```bash
+# Rollup Configuration Dosyası'nda user ve password'ü "bitcoin" olarak ayarladık. Eğer buradaki rehberde olduğu gibi yaptıysanız o bölümleri değiştirmeyin.
+bitcoin-cli -rpcconnect=0.0.0.0 -rpcport=38332 -rpcpassword=bitcoin -rpcuser=bitcoin -signet getblockcount
+```
+
+[Bu bağlantıdaki](https://mempool.signet.citrea.xyz/) Citrea Bitcoin Signet Explorer'dan kontrol edebilirsiniz.
+
+![koca1](https://github.com/kocality/citrea-node-guide/assets/69348404/f3f4bd63-75c0-4c36-a29c-8e86328bc00e)
+
+## Not: Node ile ilgili sorularınızı [Discord](https://discord.gg/citrea)'da sorabilirsiniz.
+
+## Node Çalıştırma Deneyimim
+Citrea Devnet Node'u çalıştırma süreci genel olarak sorunsuzdu. Rehber doküman ayrıntılı ve anlaşılırdı, Docker ve Rust kurulumu gibi önemli adımları kapsıyordu. Bununla birlikte, ilk kez bir node kuran biri için süreç biraz karmaşık olabilir ve bazı adımlarda daha net açıklamalardan yararlanılabilir. Ayrıca, bazı configuration dosyalarının doğru çalışması için ekstra kontroller ve ayarlamalar gerekiyordu. Genel olarak, performans ve stabilite oldukça iyiydi ve node sorunsuz bir şekilde senkronize oldu.
+
